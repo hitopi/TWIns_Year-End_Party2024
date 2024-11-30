@@ -2,6 +2,9 @@
 function addAnimationStyles() {
     const style = document.createElement('style');
     style.textContent = `
+        /* アニメーション */
+
+        /* 泡が上昇するアニメーション */
         @keyframes floatUp {
             0% {
                 transform: translateY(100vh) scale(0.5);
@@ -19,6 +22,45 @@ function addAnimationStyles() {
             }
         }
 
+        /* 泡のカバーエフェクト */
+        @keyframes bubble-cover {
+            0% {
+                transform: scale(0.1);
+                opacity: 1;
+            }
+            80% {
+                transform: scale(1.5);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+
+        /* 泡がゆらゆらしながら上昇 */
+        @keyframes bubbleUp {
+            0% {
+                transform: translate(-50%, 100px) scale(0.1);
+            }
+            100% {
+                transform: translate(-50%, -700px) scale(1.2);
+            }
+        }
+
+        /* 泡が弾けるアニメーション */
+        @keyframes bubblePop {
+            0% {
+                transform: translate(-50%, -700px) scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -700px) scale(4.5);
+                opacity: 0;
+            }
+        }
+
+        /* 魚のアニメーション */
         @keyframes swim {
             0% {
                 transform: translateX(0);
@@ -43,24 +85,9 @@ function addAnimationStyles() {
             }
         }
 
-        @keyframes bubble-cover {
-            0% {
-                transform: scale(0.1);
-                opacity: 1;
-            }
-            80% {
-                transform: scale(1.5);
-                opacity: 0.8;
-            }
-            100% {
-                transform: scale(2.5);
-                opacity: 0;
-            }
-        }
-
         @keyframes fishSwim {
             0% {
-                transform: translateX(-10vw) translateY(0) rotate(0deg); /* 画面外からスタート */
+                transform: translateX(-10vw) translateY(0) rotate(0deg);
             }
             25% {
                 transform: translateX(25vw) translateY(-10px) rotate(10deg);
@@ -72,101 +99,8 @@ function addAnimationStyles() {
                 transform: translateX(75vw) translateY(-10px) rotate(5deg);
             }
             100% {
-                transform: translateX(110vw) translateY(0) rotate(0deg); /* 画面外で終了 */
+                transform: translateX(110vw) translateY(0) rotate(0deg);
             }
-        }
-
-        .wavy-fish {
-            position: absolute;
-            animation: fishSwim var(--duration) linear infinite;
-            transform-origin: center;
-        }
-
-        .bubble {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: url('bubble.png') no-repeat center center;
-            background-size: contain;
-            animation: floatUp 5s linear infinite;
-            opacity: 0;
-            z-index: 1; /* 背景 */
-        }
-
-        .fullscreen-bubble {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            width: 200vw;
-            height: 200vh;
-            background: rgba(255, 255, 255, 0.8); /* 泡の白い背景 */
-            border-radius: 50%; /* 丸くする */
-            transform: translate(-50%, -50%) scale(0);
-            z-index: 9999;
-            animation: bubble-cover 1.5s ease-out forwards;
-        }
-
-        .fish {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            z-index: 10; /* 前面 */
-        }
-
-        .fish-left {
-            top: 20%;
-            left: 5%;
-            animation: swim 3s linear infinite;
-        }
-
-        .fish-right {
-            bottom: 20%;
-            right: 5%;
-            animation: swim-reverse 3s linear infinite;
-        }
-
-        /* クイズオプションコンテナのスタイル */
-        .quiz-option-container {
-            display: flex; /* 横並び */
-            justify-content: center; /* 中央揃え */
-            gap: 30px; /* ボタン間のスペース */
-            flex-wrap: nowrap; /* 折り返しを防ぐ */
-            margin-top: 20px;
-        }
-
-        .quiz-option {
-            display: inline-flex;
-            align-items: center; /* コンテンツを縦中央に揃える */
-            justify-content: center; /* コンテンツを横中央に揃える */
-            font-size: 1.2rem;
-            color: #000;
-            background: #ffd700;
-            padding: 15px 40px;
-            margin: 0; /* 外側の余白をリセット */
-            border: 3px solid #000;
-            border-radius: 8px;
-            text-decoration: none;
-            box-shadow: 4px 4px 0 #333;
-            transition: all 0.2s ease;
-            flex-shrink: 1; /* ボタンが縮小可能 */
-            white-space: nowrap; /* テキストの折り返しを防止 */
-        }
-
-        .quiz-option:hover {
-            transform: translateY(-5px);
-            box-shadow: 6px 6px 0 #222;
-        }
-
-        /* フェードアウトエフェクト */
-        .fullscreen-transition {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(255, 255, 255, 1);
-            z-index: 9999;
-            animation: fadeZoomOut 1s ease forwards;
         }
 
         /* フェードアウトとズーム */
@@ -181,53 +115,173 @@ function addAnimationStyles() {
             }
         }
 
-        /* 泡がゆらゆらしながら上昇 */
-        @keyframes bubbleUp {
-            0% {
-                transform: translate(-50%, 100px) scale(0.1); /* 初期位置から開始 */
-            }
-            100% {
-                transform: translate(-50%, -700px) scale(1.2); /* 弾ける位置に到達 */
-            }
-        }
-
-        /* 泡が弾けるアニメーション */
-        @keyframes bubblePop {
-            0% {
-                transform: translate(-50%, -700px) scale(1.2); /* 弾ける位置を維持 */
-                opacity: 1;
-            }
-            100% {
-                transform: translate(-50%, -700px) scale(4.5); /* 拡大しつつ位置を維持 */
-                opacity: 0;
-            }
+        /* 泡のスタイル */
+        .bubble {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: url('bubble.png') no-repeat center center;
+            background-size: contain;
+            animation: floatUp 5s linear infinite;
+            opacity: 0;
+            z-index: 1;
         }
 
         .bubble-large {
             position: fixed;
-            bottom: 0; /* 初期位置: 画面下 */
-            left: 50%; /* 水平方向の中央に配置 */
+            bottom: 0;
+            left: 50%;
             width: 150px;
             height: 150px;
             background: url('bubble.png') no-repeat center center;
             background-size: contain;
-            transform: translateX(-50%) scale(0.8); /* 水平中央に配置し、小さく表示 */
-            animation: bubbleUp 1.5s ease-in-out forwards, bubblePop 0.2s ease-out 1.5s; /* 上昇と破裂アニメーション */
+            transform: translateX(-50%) scale(0.8);
+            animation: bubbleUp 1.5s ease-in-out forwards, bubblePop 0.2s ease-out 1.5s;
             z-index: 9999;
+        }
+
+        /* 魚のスタイル */
+        .fish {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            z-index: 10;
+        }
+
+        .fish-left {
+            top: 20%;
+            left: 5%;
+            animation: swim 3s linear infinite;
+        }
+
+        .fish-right {
+            bottom: 20%;
+            right: 5%;
+            animation: swim-reverse 3s linear infinite;
+        }
+
+        .wavy-fish {
+            position: absolute;
+            animation: fishSwim var(--duration) linear infinite;
+            transform-origin: center;
+        }
+
+        /* フルスクリーンの泡 */
+        .fullscreen-bubble {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 200vw;
+            height: 200vh;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            z-index: 9999;
+            animation: bubble-cover 1.5s ease-out forwards;
+        }
+
+        /* クイズオプション */
+        .quiz-option-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: nowrap;
+            margin-top: 20px;
+        }
+
+        .quiz-option {
+            font-size: 1.2rem;
+            color: #000;
+            background: #ffd700;
+            padding: 15px 40px;
+            border: 3px solid #000;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 4px 4px 0 #333;
+            transition: all 0.2s ease;
+            max-width: 30%;
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        .quiz-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 6px 6px 0 #222;
         }
 
         /* ボタンが押された際のスタイル */
         .btn.clicked {
-            background: #000; /* 押したときの背景色 */
-            color: #ffd700; /* 押したときの文字色 */
+            background: #000;
+            color: #ffd700;
         }
 
-        /* 押されたクイズオプションボタンのスタイル */
         .quiz-option.clicked {
-            background: #000; /* 押したときの背景色 */
-            color: #ffd700; /* 押したときの文字色 */
+            background: #000;
+            color: #ffd700;
         }
 
+        /* フェードアウトエフェクト */
+        .fullscreen-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(255, 255, 255, 1);
+            z-index: 9999;
+            animation: fadeZoomOut 1s ease forwards;
+        }
+
+        /* メディアクエリ: 小さい画面に対応 */
+        @media (max-width: 768px) {
+            .bubble-large {
+                width: 100px;
+                height: 100px;
+                animation: bubbleUp 1.2s ease-in-out forwards, bubblePop 0.15s ease-out 1.2s;
+            }
+
+            .bubble {
+                width: 20px;
+                height: 20px;
+                animation: floatUp 4s linear infinite;
+            }
+
+            .fish {
+                width: 70px;
+                height: 70px;
+            }
+
+            .quiz-option {
+                font-size: 1rem;
+                padding: 10px 20px;
+                max-width: 40%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bubble-large {
+                width: 70px;
+                height: 70px;
+                animation: bubbleUp 1s ease-in-out forwards, bubblePop 0.1s ease-out 1s;
+            }
+
+            .bubble {
+                width: 15px;
+                height: 15px;
+                animation: floatUp 3s linear infinite;
+            }
+
+            .fish {
+                width: 50px;
+                height: 50px;
+            }
+
+            .quiz-option {
+                font-size: 0.9rem;
+                padding: 8px 15px;
+                max-width: 45%;
+            }
+        }
     `;
     document.head.appendChild(style);
 }
