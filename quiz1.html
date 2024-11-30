@@ -23,19 +23,21 @@
 
         /* タイトルデザイン */
         .question-title {
-            font-size: 4rem;
+            font-size: clamp(2rem, 5vw, 4rem); /* 最小2rem, 最大4rem, 画面幅に応じて自動調整 */
             color: white;
             text-shadow: 4px 4px 0 #000, 8px 8px 0 #333;
             text-align: center;
-            position: absolute; /* 画面上部に絶対配置 */
-            top: 20px; /* 画面上からの位置を指定 */
-            left: 50%; /* 水平中央揃え */
-            transform: translateX(-50%); /* 中央揃えの補正 */
-            max-width: 600px; /* quiz-box の最大幅に合わせる */
+            position: absolute;
+            top: 10px; /* ページ上部に固定 */
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 700px; /* quiz-box の最大幅に合わせる */
             width: calc(100% - 40px); /* quiz-box の幅と一致 */
-            word-wrap: break-word; /* テキストが長い場合に折り返し */
-            z-index: 100; /* 他の要素より前面に表示 */
             margin: 0; /* 余白なし */
+            white-space: nowrap; /* 折り返しを防止 */
+            overflow: hidden; /* 幅を超える場合に見切れるのを防止 */
+            text-overflow: ellipsis; /* 必要に応じて省略記号を表示 */
+            z-index: 100; /* 他の要素より前面に表示 */
         }
 
         /* スマホ向けのスタイル */
