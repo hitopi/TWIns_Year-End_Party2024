@@ -27,8 +27,30 @@
             color: white;
             text-shadow: 4px 4px 0 #000, 8px 8px 0 #333;
             text-align: center;
-            margin-bottom: 30px;
-            z-index: 20;
+            position: absolute; /* 画面上部に絶対配置 */
+            top: 20px; /* 画面上からの位置を指定 */
+            left: 50%; /* 水平中央揃え */
+            transform: translateX(-50%); /* 中央揃えの補正 */
+            max-width: 600px; /* quiz-box の最大幅に合わせる */
+            width: calc(100% - 40px); /* quiz-box の幅と一致 */
+            word-wrap: break-word; /* テキストが長い場合に折り返し */
+            z-index: 100; /* 他の要素より前面に表示 */
+            margin: 0; /* 余白なし */
+        }
+
+        /* スマホ向けのスタイル */
+        @media (max-width: 768px) {
+            .question-title {
+                font-size: 3rem; /* フォントサイズを縮小 */
+                top: 16px; /* 上部に近づける */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .question-title {
+                font-size: 2rem; /* フォントサイズをさらに縮小 */
+                top: 10px; /* 上部にさらに近づける */
+            }
         }
 
         /* クイズボックス */
