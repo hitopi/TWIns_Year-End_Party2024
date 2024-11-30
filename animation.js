@@ -44,18 +44,18 @@ function addAnimationStyles() {
                 transform: translate(-50%, 100px) scale(0.1);
             }
             100% {
-                transform: translate(-50%, -700px) scale(1.2);
+                transform: translate(-50%, var(--bubble-end-position, -700px)) scale(1.2);
             }
         }
 
         /* 泡が弾けるアニメーション */
         @keyframes bubblePop {
             0% {
-                transform: translate(-50%, -700px) scale(1.2);
+                transform: translate(-50%, var(--bubble-end-position, -700px)) scale(1.2);
                 opacity: 1;
             }
             100% {
-                transform: translate(-50%, -700px) scale(4.5);
+                transform: translate(-50%, var(--bubble-end-position, -700px)) scale(4.5);
                 opacity: 0;
             }
         }
@@ -127,6 +127,7 @@ function addAnimationStyles() {
             z-index: 1;
         }
 
+        /* 泡のスタイル */
         .bubble-large {
             position: fixed;
             bottom: 0;
@@ -138,6 +139,20 @@ function addAnimationStyles() {
             transform: translateX(-50%) scale(0.8);
             animation: bubbleUp 1.5s ease-in-out forwards, bubblePop 0.2s ease-out 1.5s;
             z-index: 9999;
+            --bubble-end-position: -700px; /* デフォルト値を設定 */
+        }
+
+        /* スマホ向けのスタイル */
+        @media (max-width: 768px) {
+            .bubble-large {
+                --bubble-end-position: -500px; /* 小さい画面では終点を低くする */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bubble-large {
+                --bubble-end-position: -300px; /* さらに低くする */
+            }
         }
 
         /* 魚のスタイル */
