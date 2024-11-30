@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz 6</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DotGothic16&display=swap" rel="stylesheet">
+    <style>
+        /* 背景デザイン */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Press Start 2P', 'DotGothic16', cursive;
+            background: linear-gradient(to bottom, #00d4ff, #0044ff);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* タイトルデザイン */
+        .question-title {
+            font-size: 4rem;
+            color: white;
+            text-shadow: 4px 4px 0 #000, 8px 8px 0 #333;
+            text-align: center;
+            margin-bottom: 30px;
+            z-index: 20;
+        }
+
+        /* クイズボックス */
+        .quiz-box {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 16px;
+            border: 4px solid #000;
+            box-shadow: 6px 6px 0 #333;
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            z-index: 20;
+        }
+
+        .quiz-box p {
+            font-size: 1.2rem;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .quiz-option {
+            display: inline-block;
+            font-size: 1.2rem;
+            color: #000;
+            background: #ffd700;
+            padding: 15px 40px;
+            margin: 10px;
+            border: 3px solid #000;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 4px 4px 0 #333;
+            transition: all 0.2s ease;
+        }
+
+        .quiz-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 6px 6px 0 #222;
+        }
+
+        /* ナビゲーションボタン */
+        .nav-buttons {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            z-index: 15;
+        }
+
+        .nav-button {
+            z-index: 15;
+            font-size: 1rem;
+            color: #000;
+            background: #ffd700;
+            padding: 5px 10px;
+            border: 3px solid #000;
+            border-radius: 4px;
+            text-decoration: none;
+            box-shadow: 3px 3px 0 #333;
+            transition: all 0.2s ease;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 4px 4px 0 #222;
+        }
+
+        .nav-button.current {
+            background: #ff4500;
+            color: #fff;
+            box-shadow: 3px 3px 0 #222;
+        }
+
+        /* スマホ向けのスタイル */
+        @media (max-width: 768px) {
+            .question-title {
+                font-size: 2.5rem;
+            }
+
+            .quiz-box {
+                padding: 20px 10px;
+            }
+
+            .quiz-option {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+
+            .nav-buttons {
+                gap: 5px;
+                bottom: 20px;
+            }
+
+            .nav-button {
+                font-size: 0.9rem;
+                padding: 4px 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .question-title {
+                font-size: 2rem;
+            }
+
+            .quiz-box {
+                padding: 15px 8px;
+            }
+
+            .quiz-option {
+                font-size: 0.9rem;
+                padding: 8px 15px;
+            }
+
+            .nav-button {
+                font-size: 0.8rem;
+                padding: 3px 6px;
+            }
+        }
+    </style>
+    <script src="animation.js" defer></script>
+</head>
+<body>
+    <!--◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇-->
+    <div class="question-title">QUESTION 6</div>
+    <div class="quiz-box">
+        <p>Please write your question here in English.<br>
+        <br>こちらに「日本語で質問内容」をお書きください</p>
+        <div class="quiz-option-container">
+            <a href="#" class="quiz-option">TRUE <span>〇</span></a>
+            <a href="#" class="quiz-option">FALSE <span>✖</span></a>
+        </div>
+    </div>
+    <!--◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇-->
+
+    <!-- ナビゲーションボタン -->
+    <div class="nav-buttons">
+        <a href="index.html" class="nav-button">Home</a>
+        <a href="quiz1.html" class="nav-button">1</a>
+        <a href="quiz2.html" class="nav-button">2</a>
+        <a href="quiz3.html" class="nav-button">3</a>
+        <a href="quiz4.html" class="nav-button">4</a>
+        <a href="quiz5.html" class="nav-button">5</a>
+        <a href="quiz6.html" class="nav-button current">6</a>
+        <a href="quiz7.html" class="nav-button">7</a>
+        <a href="quiz8.html" class="nav-button">8</a>
+        <a href="quiz9.html" class="nav-button">9</a>
+        <a href="quiz10.html" class="nav-button">10</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Quiz Challenge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        /* 背景デザイン */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Press Start 2P', cursive;
+            background: linear-gradient(to bottom, #00d4ff, #0044ff);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* タイトルスタイル */
+        .title {
+            font-size: 4rem;
+            color: white;
+            text-align: center;
+            text-shadow: 4px 4px 0 #000, 8px 8px 0 #333;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            z-index: 15;
+        }
+
+        /* ボタンスタイル */
+        .btn {
+            font-size: 1.5rem;
+            color: #000;
+            background: #ffd700;
+            padding: 15px 40px;
+            border: 4px solid #000;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            box-shadow: 4px 4px 0 #333;
+            transition: all 0.2s ease;
+            z-index: 15;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 6px 6px 0 #222;
+        }
+
+        /* スマホ向けのスタイル */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+
+            .btn {
+                font-size: 1.5rem;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+    <script src="animation.js" defer></script>
+</head>
+<body>
+    <div class="title">Fish Quiz<br>🎣CHALLENGE🐟</div>
+    <a href="quiz1.html" class="btn">LET'S START!</a>
+</body>
+</html>
